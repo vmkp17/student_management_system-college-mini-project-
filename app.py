@@ -1,12 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from database import connection, cursor
 
 app = Flask(__name__)
+
+# ================= HOME =================
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
+# ================= ADD STUDENT =================
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
@@ -40,13 +44,14 @@ def add():
         values = (name, roll, department, marks, grade)
 
         cursor.execute(sql, values)
-
         connection.commit()
 
-        return "Student Added Successfully"
+        return redirect(url_for("display"))
 
     return render_template("add.html")
 
+
+# ================= DISPLAY STUDENTS =================
 
 @app.route("/display")
 def display():
@@ -57,7 +62,10 @@ def display():
 
     return render_template("display.html", students=students)
 
-@app.route("/search", methods=["GET","POST"])
+
+# ================= SEARCH STUDENT =================
+
+@app.route("/search", methods=["GET", "POST"])
 def search():
 
     student = None
@@ -66,55 +74,59 @@ def search():
 
         roll = request.form["roll"]
 
-        cursor.execute("SELECT * FROM students WHERE roll_no=%s",(roll,))
+        cursor.execute(
+            "SELECT * FROM students WHERE roll_no=%s",
+            (roll,)
+        )
 
         student = cursor.fetchone()
 
     return render_template("search.html", student=student)
 
 
+# ================= DELETE STUDENT =================
 
-@app.route("/delete", methods=["GET","POST"])
+@app.route("/delete", methods=["GET", "POST"])
 def delete():
 
     if request.method == "POST":
 
         roll = request.form["roll"]
 
-        cursor.execute("DELETE FROM students WHERE roll_no=%s",(roll,))
+        cursor.execute(
+            "DELETE FROM students WHERE roll_no=%s",
+            (roll,)
+        )
 
         connection.commit()
 
-        return "Student Deleted Successfully"
+        return redirect(url_for("display"))
 
     return render_template("delete.html")
 
 
+# ================= UPDATE STUDENT =================
 
-
-
-
-@app.route("/update", methods=["GET","POST"])
+@app.route("/update", methods=["GET", "POST"])
 def update():
 
     if request.method == "POST":
 
         roll = request.form["roll"]
-
         marks = int(request.form["marks"])
 
         if marks >= 90:
-            grade="A+"
+            grade = "A+"
         elif marks >= 80:
-            grade="A"
+            grade = "A"
         elif marks >= 70:
-            grade="B"
+            grade = "B"
         elif marks >= 60:
-            grade="C"
+            grade = "C"
         elif marks >= 50:
-            grade="D"
+            grade = "D"
         else:
-            grade="F"
+            grade = "F"
 
         cursor.execute(
             "UPDATE students SET marks=%s, grade=%s WHERE roll_no=%s",
@@ -123,9 +135,12 @@ def update():
 
         connection.commit()
 
-        return "Student Updated Successfully"
+        return redirect(url_for("display"))
 
     return render_template("update.html")
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+    
+

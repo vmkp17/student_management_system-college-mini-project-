@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Update Student</title>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <title>Update Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Update Student Marks</h1>
+    <h1>Update Student</h1>
 
-<form method="POST">
+    <form method="POST">
 
-<input type="text" name="roll" placeholder="Roll Number" required>
+        <input type="text" name="roll" placeholder="Enter Roll Number" required>
 
-<br><br>
+        <br><br>
 
-<input type="number" name="marks" placeholder="New Marks" required>
+        <input type="number" name="marks" placeholder="Enter New Marks" required>
 
-<br><br>
+        <br><br>
 
-<button type="submit">Update</button>
+        <button type="submit">Update Student</button>
 
-</form>
+    </form>
 
-<br>
+    <br>
 
-<a href="/">
-<button>Home</button>
-</a>
+    <a href="/">
+        <button>Back Home</button>
+    </a>
 
 </div>
 

@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
+}
+
+.container{
+    width:750px;
+    padding:45px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.18);
+    box-shadow:0 15px 40px rgba(0,0,0,0.45);
+}
+
+h1{
+    color:#ffffff;
+    text-align:center;
+    margin-bottom:35px;
+    font-size:34px;
+    letter-spacing:1px;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.buttons a{
+    text-decoration:none;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#ffffff;
+    color:#0f172a;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+    box-shadow:0 8px 18px rgba(0,0,0,0.25);
+}
+
+button:hover{
+    background:#dbeafe;
+    transform:translateY(-4px);
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-size:16px;
+
+    background:rgba(255,255,255,.9);
+
+}
+
+form button{
+
+    width:100%;
+
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    color:white;
+}
+
+th{
+    background:#1e3a8a;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+tr:hover{
+    background:rgba(255,255,255,0.08);
+}

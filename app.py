@@ -7,8 +7,22 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
 
+    cursor.execute("SELECT COUNT(*) FROM students")
+    total_students = cursor.fetchone()[0]
+
+    cursor.execute("SELECT MAX(marks) FROM students")
+    highest_marks = cursor.fetchone()[0]
+
+    cursor.execute("SELECT AVG(marks) FROM students")
+    average_marks = cursor.fetchone()[0]
+
+    return render_template(
+        "index.html",
+        total_students=total_students,
+        highest_marks=highest_marks,
+        average_marks=round(average_marks,2)
+    )
 
 # ================= ADD STUDENT =================
 
